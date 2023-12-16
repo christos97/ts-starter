@@ -1,0 +1,59 @@
+{
+  "name": "ts-starter",
+  "description": "A dead-simple TypeScript starter template for VSCode",
+  "version": "1.1.1",
+  "author": "Christos Syrmakezis",
+  "dependencies": {
+    "dotenv": "~16.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.4",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "prettier": "^3.1.1",
+    "syncpack": "^11.2.1",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=16.20.2 || ^20"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "keywords": [
+    "dotenv",
+    "eslint",
+    "pnpm",
+    "prettier",
+    "starter",
+    "template",
+    "tsup",
+    "typescript"
+  ],
+  "license": "ISC",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "packageManager": "pnpm@8.12.1",
+  "scripts": {
+    "build": "concurrently \"pnpm build:cjs\" \"pnpm build:esm\"",
+    "build:cjs": "tsup --format cjs",
+    "build:esm": "tsup --format esm",
+    "clean": "rm -rf dist node_modules *lock* && pnpm i",
+    "concurretly": "concurrently",
+    "format": "concurrently \"prettier --write '**/*.{js,ts,tsx,json,md}'\" \"pnpm syncpack format\"",
+    "lint": "eslint \"src/**/*.{ts,tsx}\" --fix",
+    "reset": "pnpm clean && pnpm build",
+    "start": "pnpm start:esm",
+    "start:cjs": "pnpm build:cjs && node dist/index.js",
+    "start:esm": "pnpm build:esm && node dist/index.mjs",
+    "syncpack": "syncpack"
+  }
+}
