@@ -31,7 +31,8 @@ const handleApiError = (error: unknown): AxiosError<unknown, any> => {
   const axiosError = error as AxiosError;
   const errorDetails = {
     message: axiosError.message,
-    url: axiosError?.config?.url,
+    baseURL: axiosError?.config?.baseURL,
+    path: axiosError?.config?.url,
     method: axiosError?.config?.method,
     status: axiosError.response?.status,
     statusText: axiosError.response?.statusText,
