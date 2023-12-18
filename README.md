@@ -16,6 +16,7 @@ Welcome to TS-Starter, a dead-simple TypeScript starter template for Visual Stud
    ```sh
     git clone https://github.com/christos97/ts-starter.git
     cd ts-starter
+    chmod +x .husky/pre-commit
    ```
 
 2. **Install Dependencies**
