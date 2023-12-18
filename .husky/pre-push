@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "-----------------------------------"
+echo "Linting and building your code..."
+echo "-----------------------------------"
+
+npx pnpm lint && pnpm build
+
+echo "-----------------------------------"
+echo "You can now push your code..."
