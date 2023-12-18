@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "-----------------------------------"
+echo "Formatting your code..."
+echo "-----------------------------------"
+
+npx pnpm format
+git add .
+
+echo "-----------------------------------"
+echo "You can now push your code..."

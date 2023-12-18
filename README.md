@@ -13,6 +13,7 @@ Welcome to TS-Starter, a dead-simple TypeScript starter template for Visual Stud
 ## Getting Started
 
 1. **Clone the Repository**:
+
    ```sh
     git clone https://github.com/christos97/ts-starter.git
     cd ts-starter
@@ -20,6 +21,7 @@ Welcome to TS-Starter, a dead-simple TypeScript starter template for Visual Stud
    ```
 
 2. **Install Dependencies**
+
    ```sh
     pnpm install
    ```
@@ -52,11 +54,14 @@ Welcome to TS-Starter, a dead-simple TypeScript starter template for Visual Stud
 - `start`:esm: Runs the application in ESM format.
 
 ### Handling Environment Variables in CI/CD Pipeline:
+
 - `GitHub Secrets for Production/CI`:
-For environment variables that are sensitive or specific to production and CI environments (like API keys or service credentials), we use GitHub Secrets. This approach ensures that these variables are securely stored and are not exposed in the codebase or in the CI logs
+  For environment variables that are sensitive or specific to production and CI environments (like API keys or service credentials), we use GitHub Secrets. This approach ensures that these variables are securely stored and are not exposed in the codebase or in the CI logs
 
 - `Setting Up GitHub Secrets`:
+
   - Add Secrets to your repository
+
     - Navigate to your GitHub repository.
     - Click on the Settings tab.
     - Go to Secrets and choose Actions.
@@ -75,6 +80,7 @@ jobs:
     steps:
       # ... previous steps ...
       env:
-          CI: true
-          # API_BASE_URL: ${{ secrets.API_BASE_URL }}
-          # API_KEY: ${{ secrets.API_KEY }}s
+        CI: true
+        # API_BASE_URL: ${{ secrets.API_BASE_URL }}
+        # API_KEY: ${{ secrets.API_KEY }}s
+```
