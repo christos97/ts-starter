@@ -7,7 +7,7 @@ const options: Options = {
   minify: CI,
   splitting: CI,
   clean: CI,
-  format: CI ? ['esm', 'cjs'] : 'esm',
+  format: ['esm', 'cjs'],
   dts: CI,
   entry: ['src/index.ts'],
   target: 'es2021',

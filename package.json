@@ -1,6 +1,6 @@
 {
   "name": "ts-starter",
-  "description": "A dead-simple TypeScript starter template for VSCode",
+  "description": "A dead-simple TypeScript template",
   "version": "1.1.1",
   "author": "Christos Syrmakezis",
   "dependencies": {

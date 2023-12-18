@@ -1,7 +1,7 @@
-import { env } from './env';
+import env from '@/env';
 
 export const printEnv = () => {
-  console.log({ env });
+  console.log(env);
 };
 
 printEnv();

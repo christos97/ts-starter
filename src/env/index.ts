@@ -9,16 +9,20 @@ const CI = Boolean(process.env.CI);
 
 dotenv.config({ path: CI ? '.env' : '.env.development' });
 
-const env = {
-  // Default variables
-  CI,
+// Add more variables here as defined in .env or .env.development
+const ENV_VARS = {
+  MY_CUSTOM_VAR: String(process.env.MY_CUSTOM_VAR),
+  ANOTHER_VAR: Number(process.env.ANOTHER_VAR),
+} as const;
 
-  // Custom variables
-  MY_CUSTOM_VAR: process.env.MY_CUSTOM_VAR,
-  ANOTHER_VAR: process.env.ANOTHER_VAR,
-  // Add more variables here as defined in .env or .env.development
+const DEFAULT_ENV_VARS = {
+  CI,
+} as const;
+
+const env = {
+  ...DEFAULT_ENV_VARS,
+  ...ENV_VARS,
 } as const;
 type env = typeof env;
 
-export { env };
 export default env;

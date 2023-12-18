@@ -17,19 +17,22 @@ Welcome to TS-Starter, a dead-simple TypeScript starter template for Visual Stud
    ```sh
     git clone https://github.com/christos97/ts-starter.git
     cd ts-starter
+   ```
 2. **Install Dependencies**
    ```sh
     pnpm install
+   ```
 3. **Start dev server**
-    ```sh
-      pnpm start
-Scripts
- - `build`: Builds the project in both CJS and ESM formats.
- - `build:cjs`: Builds the project in CommonJS format.
- - `build:esm`: Builds the project in ECMAScript Module format.
- - `clean`: Cleans the project by removing the dist directory and node modules.
- - `format`: Formats the codebase using Prettier and syncs package configurations.
- - `lint`: Lints the codebase using ESLint.
- - `start`: Runs the application in ESM format.
- - `start`:cjs: Runs the application in CJS format.
- - `start`:esm: Runs the application in ESM format.
+   ```sh
+   pnpm start
+   Scripts
+
+- `build`: Builds the project in both CJS and ESM formats.
+- `build:cjs`: Builds the project in CommonJS format.
+- `build:esm`: Builds the project in ECMAScript Module format.
+- `clean`: Cleans the project by removing the dist directory and node modules.
+- `format`: Formats the codebase using Prettier and syncs package configurations.
+- `lint`: Lints the codebase using ESLint.
+- `start`: Runs the application in ESM format.
+- `start`:cjs: Runs the application in CJS format.
+- `start`:esm: Runs the application in ESM format.
