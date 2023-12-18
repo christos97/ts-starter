@@ -11,9 +11,8 @@
     "noUncheckedIndexedAccess": true,
     "paths": {
       "@/*": ["src/*"],
-      "@/env": ["src/env/index.ts"],
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "src/temp"],
   "exclude": ["node_modules", "dist"]
 }

@@ -11,18 +11,11 @@ dotenv.config({ path: CI ? '.env' : '.env.development' });
 
 // Add more variables here as defined in .env or .env.development
 const ENV_VARS = {
-  MY_CUSTOM_VAR: String(process.env.MY_CUSTOM_VAR),
-  ANOTHER_VAR: Number(process.env.ANOTHER_VAR),
+  API_BASE_URL: String(process.env.API_BASE_URL),
+  API_CUSTOM_HEADERS: String(process.env.API_CUSTOM_HEADERS),
 } as const;
 
-const DEFAULT_ENV_VARS = {
-  CI,
-} as const;
-
-const env = {
-  ...DEFAULT_ENV_VARS,
-  ...ENV_VARS,
-} as const;
+const env = Object.assign({}, ENV_VARS);
 type env = typeof env;
 
 export default env;

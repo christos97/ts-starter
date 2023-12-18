@@ -4,6 +4,9 @@ node_modules
 # Build output
 dist
 
+# Temp source folder for local development you don't want to commit
+src/.tmp
+
 # Environment files
 .env
 .env.development
