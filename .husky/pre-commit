@@ -5,7 +5,7 @@ echo "-----------------------------------"
 echo "Formatting your code..."
 echo "-----------------------------------"
 
-npx pnpm format
+pnpm format
 git add .
 
 echo "-----------------------------------"

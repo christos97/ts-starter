@@ -1,3 +1,3 @@
-export * from '@/.tmp';
+// export * from '@/.tmp';
 
 export default {};

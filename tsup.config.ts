@@ -1,18 +1,14 @@
-import { defineConfig, type Options } from 'tsup';
+import { defineConfig } from 'tsup';
 
 const CI = Boolean(process.env.CI);
 
-console.warn('CI', CI);
-
-const options: Options = {
-  sourcemap: CI,
+export default defineConfig({
+  entry: ['src/index.ts'],
+  format: 'esm',
+  target: 'es2021',
+  clean: true,
+  sourcemap: 'inline',
   minify: CI,
   splitting: CI,
-  clean: CI,
-  format: 'esm',
   dts: CI,
-  entry: ['src/index.ts'],
-  target: 'es2021',
- }
-
-export default defineConfig(options);
+ });

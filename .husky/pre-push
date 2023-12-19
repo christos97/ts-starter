@@ -5,7 +5,7 @@ echo "-----------------------------------"
 echo "Linting and building your code..."
 echo "-----------------------------------"
 
-npx pnpm lint && pnpm build
+pnpm lint && pnpm build:esm
 
 echo "-----------------------------------"
 echo "You can now push your code..."
