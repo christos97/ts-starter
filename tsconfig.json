@@ -1,18 +1,22 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "es6",
-    "module": "commonjs",
+    "target": "ES2021",
+    "module": "ES2020",
+    "moduleResolution": "node",
     "outDir": "dist",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
     "noUncheckedIndexedAccess": true,
     "paths": {
       "@/*": ["src/*"],
     }
   },
-  "include": ["src/**/*", "src/temp"],
+  "include": ["src/**/*", "src/.tmp"],
   "exclude": ["node_modules", "dist"]
 }

@@ -9,13 +9,17 @@ const CI = Boolean(process.env.CI);
 
 dotenv.config({ path: CI ? '.env' : '.env.development' });
 
-// Add more variables here as defined in .env or .env.development
-const ENV_VARS = {
+/**
+ * @description Environment variables used in the project.
+ * - Add new variables here defined in .env or .env.development
+ */
+const env = {
+  CI,
   API_BASE_URL: String(process.env.API_BASE_URL),
   API_CUSTOM_HEADERS: String(process.env.API_CUSTOM_HEADERS),
+  // Add new variables below ...
 } as const;
-
-const env = Object.assign({}, ENV_VARS);
 type env = typeof env;
 
 export default env;
+export type { env as Env };

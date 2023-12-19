@@ -27,7 +27,7 @@ jobs:
         run: |
           pnpm install --frozen-lockfile
           pnpm lint
-          pnpm build
+          pnpm build:esm
         env:
           CI: true
           # API_BASE_URL: ${{ secrets.API_BASE_URL }}

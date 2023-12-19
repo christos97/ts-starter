@@ -1,6 +1,9 @@
 import axios, { AxiosError } from 'axios';
 
 import env from '@/env';
+import logger from '@/logger';
+
+logger.setContext('api');
 
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 
@@ -24,27 +27,31 @@ const getCustomHeaders = (): Record<string, string> => {
 
 const handleApiError = (error: unknown): AxiosError<unknown, any> => {
   if (!axios.isAxiosError(error)) {
-    console.error('UNKNOWN_ERROR:', error);
+    logger.error('UNKNOWN_ERROR:', String(error));
     return new AxiosError(String(error), 'UNKNOWN_ERROR');
   }
 
   const axiosError = error as AxiosError;
+  const { config, code, message, name, response, request } = axiosError;
+
   const errorDetails = {
-    message: axiosError.message,
-    baseURL: axiosError?.config?.baseURL,
-    path: axiosError?.config?.url,
-    method: axiosError?.config?.method,
-    status: axiosError.response?.status,
-    statusText: axiosError.response?.statusText,
-    requestBody: axiosError.config?.data || 'N/A',
-    requestParams: axiosError.config?.params || 'N/A',
-    requestHeaders: axiosError.config?.headers,
-    responseData: axiosError.response?.data,
+    message,
+    code,
+    name,
+    baseURL: config?.baseURL || 'N/A',
+    path: config?.url || 'N/A',
+    method: config?.method || 'N/A',
+    status: response?.status || 'N/A',
+    statusText: response?.statusText || 'N/A',
+    requestBody: config?.data || 'N/A',
+    requestParams: config?.params || 'N/A',
+    requestHeaders: config?.headers || 'N/A',
+    responseData: response?.data || 'N/A',
   };
 
-  console.error('API Error:', JSON.stringify(errorDetails, null, 2));
+  logger.error('ApiModuleError', JSON.stringify(errorDetails, null, 2));
 
-  return axiosError;
+  return new AxiosError(message, code, config, request, response);
 };
 
 const instance = axios.create({
@@ -61,7 +68,6 @@ const api = {
     params?: Record<string, any>,
   ): Promise<[T | null, AxiosError | null]> => {
     try {
-      console.log({ params });
       const response = await instance.get<T>(url, { params });
       return [response.data, null];
     } catch (error) {
@@ -93,7 +99,7 @@ const api = {
     }
   },
 } as const;
-
 type api = typeof api;
 
 export default api;
+export type { api as Api };

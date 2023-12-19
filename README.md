@@ -4,7 +4,7 @@ Welcome to TS-Starter, a dead-simple TypeScript starter template for Visual Stud
 
 ## Features
 
-- **Build Tools**: Integrated with `tsup` (ESBuild) for efficient and flexible build processes, supporting both `CommonJS` and `ESM` formats.
+- **Build Tools**: Integrated with `tsup` (ESBuild) for fast build processes, supporting ONLY `ESM` format - Some packages need to be downgraded to work with `cjs` (eg chalk v5 --> v4).
 - **Linter and Formatter**: `ESLint` and `Prettier` are configured to ensure code quality and consistency.
 - **Environment Variables**: Support for `.env` and `.env.development` files to manage environment-specific configurations using `dotenv`.
 - **Concurrent Tasks**: Use of `concurrently` for running multiple scripts simultaneously.
@@ -44,14 +44,19 @@ Welcome to TS-Starter, a dead-simple TypeScript starter template for Visual Stud
 ### Available Scripts
 
 - `build`: Builds the project in both CJS and ESM formats.
-- `build:cjs`: Builds the project in CommonJS format.
 - `build:esm`: Builds the project in ECMAScript Module format.
 - `clean`: Cleans the project by removing the dist directory and node modules.
 - `format`: Formats the codebase using Prettier and syncs package configurations.
 - `lint`: Lints the codebase using ESLint.
 - `start`: Runs the application in ESM format.
-- `start`:cjs: Runs the application in CJS format.
-- `start`:esm: Runs the application in ESM format.
+- `start:esm`: Runs the application in ESM format.
+
+#### Downgrade for cjs support
+
+---
+
+- `build:cjs`: Builds the project in CommonJS format.
+- `start:cjs`: Runs the application in CJS format.
 
 ### Handling Environment Variables in CI/CD Pipeline:
 
