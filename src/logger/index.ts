@@ -1,6 +1,7 @@
-import chalk, { type ColorName } from 'chalk';
 import { existsSync, mkdirSync, appendFile } from 'fs';
 import { join } from 'path';
+
+import chalk, { type ColorName } from 'chalk';
 
 import env from '@/env';
 
@@ -64,10 +65,10 @@ const createLogger = ({ context, logLevel }: LoggerOptions) => {
     );
   };
 
-  // eslint-disable-next-line no-unused-vars
   const log = (
     message: string,
     level: LogLevel,
+    // eslint-disable-next-line no-unused-vars
     consoleFn: (msg: string) => void,
     details?: unknown,
   ): void => {
