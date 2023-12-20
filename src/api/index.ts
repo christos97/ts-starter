@@ -1,27 +1,27 @@
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError, AxiosHeaders } from 'axios';
 
 import env from '@/env';
 import logger from '@/logger';
 
-logger.setContext('api');
+logger.setContext('API');
 
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 
+type ApiResponse<T = Record<string, any>> = Promise<[T | null, AxiosError | null]>;
 /**
  * - Assuming custom headers are comma-separated "key:value" pairs in API_CUSTOM_HEADERS env variable
  * @example "X-Custom-Header:Value, X-Another-Header:AnotherValue"
  */
-const getCustomHeaders = (): Record<string, string> => {
-  const headers = {} as Record<string, string>;
+const getCustomHeaders = (): AxiosHeaders => {
+  const headers = new AxiosHeaders();
   if (env.API_CUSTOM_HEADERS) {
     env.API_CUSTOM_HEADERS.split(',').forEach((headerPair) => {
-      const [key, value] = headerPair.split(':').map((s) => s.trim());
-      if (key && value) {
-        headers[key] = value;
+      const [name, value] = headerPair.split(':').map((s) => s.trim());
+      if (name && value) {
+        headers.set(name, value);
       }
     });
   }
-
   return headers;
 };
 
@@ -65,8 +65,8 @@ const instance = axios.create({
 const api = {
   get: async <T>(
     url: string,
-    params?: Record<string, any>,
-  ): Promise<[T | null, AxiosError | null]> => {
+    params?: Record<string, string | number | boolean>,
+  ): ApiResponse<T> => {
     try {
       const response = await instance.get<T>(url, { params });
       return [response.data, null];
@@ -74,7 +74,7 @@ const api = {
       return [null, handleApiError(error)];
     }
   },
-  post: async <T, U>(url: string, data: U): Promise<[T | null, AxiosError | null]> => {
+  post: async <T, U>(url: string, data: U): ApiResponse<T> => {
     try {
       const response = await instance.post<T>(url, data);
       return [response.data, null];
@@ -82,7 +82,7 @@ const api = {
       return [null, handleApiError(error)];
     }
   },
-  put: async <T, U>(url: string, data: U): Promise<[T | null, AxiosError | null]> => {
+  put: async <T, U>(url: string, data: U): ApiResponse<T> => {
     try {
       const response = await instance.put<T>(url, data);
       return [response.data, null];
@@ -90,7 +90,7 @@ const api = {
       return [null, handleApiError(error)];
     }
   },
-  delete: async <T>(url: string): Promise<[T | null, AxiosError | null]> => {
+  delete: async <T>(url: string): ApiResponse<T> => {
     try {
       const response = await instance.delete<T>(url);
       return [response.data, null];

@@ -7,8 +7,9 @@ export default defineConfig({
   format: 'esm',
   target: 'es2021',
   clean: true,
-  sourcemap: 'inline',
-  minify: CI,
+  treeshake: false,
+  sourcemap: CI ? 'inline' : true,
   splitting: CI,
+  minify: CI,
   dts: CI,
  });

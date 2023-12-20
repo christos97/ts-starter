@@ -40,6 +40,7 @@ Welcome to TS-Starter, a dead-simple TypeScript starter template for Visual Stud
   rm .env.example
   ```
 - Fill in the actual values in `.env` and `.env.development` as per your development and production environments.
+- Sensitive data like api-keys should be stored in github secrets instead
 
 ### Available Scripts
 

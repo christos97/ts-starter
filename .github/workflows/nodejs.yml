@@ -31,4 +31,4 @@ jobs:
         env:
           CI: true
           # API_BASE_URL: ${{ secrets.API_BASE_URL }}
-          # API_KEY: ${{ secrets.API_KEY }}s
+          # API_CUSTOM_HEADERS: ${{ secrets.API_CUSTOM_HEADERS }}s
