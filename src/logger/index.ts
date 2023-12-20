@@ -50,7 +50,7 @@ const createLogger = ({ context, logLevel }: LoggerOptions) => {
     );
 
   const writeLog = (message: string, level: LogLevel, details?: unknown): void => {
-    const logsDir = join(process.cwd(), 'logs');
+    const logsDir = join(process.cwd(), '.logs');
     if (!existsSync(logsDir)) {
       mkdirSync(logsDir);
     }
@@ -102,6 +102,8 @@ const logger = createLogger({
   logLevel: env.CI ? 'info' : 'debug',
 });
 type logger = ReturnType<typeof createLogger>;
+
+Object.freeze(logger);
 
 export default logger;
 export type { logger as Logger };

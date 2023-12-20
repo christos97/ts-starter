@@ -101,5 +101,7 @@ const api = {
 } as const;
 type api = typeof api;
 
+Object.freeze(api);
+
 export default api;
 export type { api as Api };

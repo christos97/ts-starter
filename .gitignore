@@ -7,6 +7,9 @@ dist
 # Temp source folder for local development you don't want to commit
 src/.tmp
 
+# Logs
+.logs
+
 # Environment files
 .env
 .env.development

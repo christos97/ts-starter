@@ -4,22 +4,26 @@
  * - CI (github actions) uses .env
  */
 import dotenv from 'dotenv';
+import { parseEnv, z } from 'znv';
 
-const CI = Boolean(process.env.CI);
+const IS_GITHUB_ACTIONS = Boolean(process.env.CI);
 
-dotenv.config({ path: CI ? '.env' : '.env.development' });
+dotenv.config({ path: IS_GITHUB_ACTIONS ? '.env' : '.env.development' });
 
 /**
  * @description Environment variables used in the project.
  * - Add new variables here defined in .env or .env.development
  */
-const env = {
-  CI,
-  API_BASE_URL: String(process.env.API_BASE_URL),
-  API_CUSTOM_HEADERS: String(process.env.API_CUSTOM_HEADERS),
+
+const env = parseEnv(process.env, {
+  CI: z.boolean().optional().default(IS_GITHUB_ACTIONS),
+  API_BASE_URL: z.string(),
+  API_CUSTOM_HEADERS: z.string(),
   // Add new variables below ...
-} as const;
+});
 type env = typeof env;
+
+Object.freeze(env);
 
 export default env;
 export type { env as Env };
