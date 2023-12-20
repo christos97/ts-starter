@@ -31,4 +31,15 @@ jobs:
         env:
           CI: true
           # API_BASE_URL: ${{ secrets.API_BASE_URL }}
-          # API_CUSTOM_HEADERS: ${{ secrets.API_CUSTOM_HEADERS }}s
+          # API_CUSTOM_HEADERS: ${{ secrets.API_CUSTOM_HEADERS }}
+
+  publish:
+    needs: build  
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish to npm
+        run: |
+          echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > ~/.npmrc
+          npm publish --access public
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_CI_TOKEN_TS_STARTER }}

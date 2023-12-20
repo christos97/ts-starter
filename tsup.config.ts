@@ -1,6 +1,7 @@
 import { defineConfig } from 'tsup';
 
 const CI = Boolean(process.env.CI);
+const SYMLINK_WATCH_MODE = Boolean(process.env.SYMLINK_WATCH_MODE);
 
 export default defineConfig({
   entry: ['src/index.ts'],
@@ -12,4 +13,5 @@ export default defineConfig({
   splitting: CI,
   minify: CI,
   dts: CI,
+  watch: !CI && SYMLINK_WATCH_MODE
  });

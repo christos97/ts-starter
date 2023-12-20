@@ -39,6 +39,11 @@
       "require": "./dist/index.js"
     }
   },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "keywords": [
     "dotenv",
     "eslint",
@@ -49,16 +54,17 @@
     "tsup",
     "typescript"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "packageManager": "pnpm@8.12.1",
+  "private": false,
   "scripts": {
     "build": "tsup --format=cjs,esm",
     "build:cjs": "tsup --format cjs",
     "build:esm": "tsup --format esm",
     "clean": "rm -rf dist node_modules *lock* && pnpm i",
-    "concurretly": "concurrently",
+    "concurrently": "concurrently",
     "format": "concurrently \"prettier --write '**/*.{js,ts,tsx,json,md}'\" \"pnpm syncpack format\"",
     "gen:specs": "openapi-codegen gen $API_NAME",
     "lint": "eslint \"src/**/*.{ts,tsx}\" --fix",
