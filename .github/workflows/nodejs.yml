@@ -22,7 +22,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
       - name: install, lint, build
         run: |
           pnpm install --frozen-lockfile
@@ -37,8 +36,10 @@ jobs:
     needs: build  
     runs-on: ubuntu-latest
     steps:
-      - name: Publish to npm
-        run: |
-          npm publish --access public
+      - name: Create .npmrc file
+        run: echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
         env:
-          NPM_TOKEN: ${{ secrets.NPM_CI_TOKEN_TS_STARTER }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish to npm
+        run: npm publish --access public  
